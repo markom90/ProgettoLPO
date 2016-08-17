@@ -1,0 +1,12 @@
+// expected output: true
+fun
+int
+ inc(int x) -> x+1
+int
+ one() -> inc(0)
+int
+ inc(int x) -> x+2
+int
+ two() -> inc(0)
+in
+one()==1 & two()==2

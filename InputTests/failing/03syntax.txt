@@ -1,0 +1,2 @@
+// expected error: ParserException: Expecting 'SEPARATOR', found 'INT_TY'
+fun int f(int x int y)->x in 42

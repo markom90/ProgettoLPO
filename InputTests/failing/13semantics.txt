@@ -1,0 +1,2 @@
+// expected error: EvaluatorException: Undefined operation on the empty list: tail
+:>[int list]

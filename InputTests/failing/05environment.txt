@@ -1,0 +1,2 @@
+// expected error: EnvironmentException: Undeclared function f
+let f=42 in f()+f(); 

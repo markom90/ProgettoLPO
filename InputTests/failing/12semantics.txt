@@ -1,0 +1,2 @@
+// expected error: EvaluatorException: Undefined operation on the empty list: head
+<:[int list]

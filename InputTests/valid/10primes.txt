@@ -1,0 +1,7 @@
+// expected output: true
+fun
+    bool is_prime(int n,int list l)-> l==[int] | let h=<:l in h*h>n | n % h /= 0 & is_prime(n,:>l);
+    int list aux_primes(int max,int n,int list acc)->if n>max then acc else if is_prime(n,acc) then aux_primes(max,n+1,acc@n:[int]) else aux_primes(max,n+1,acc);;
+    int list primes(int max)->aux_primes(max,2,[int])
+in
+    primes(20)==2:3:5:7:11:13:17:19:[int]

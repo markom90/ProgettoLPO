@@ -1,0 +1,2 @@
+// expected error: TokenizerException: Unknown token _
+let _x=1 in _x

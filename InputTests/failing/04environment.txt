@@ -1,0 +1,2 @@
+// expected error: EnvironmentException: Undeclared variable f
+fun int f()->42 in f+f

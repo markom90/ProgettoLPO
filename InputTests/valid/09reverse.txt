@@ -1,0 +1,6 @@
+// expected output: true
+fun
+    int list aux(int list acc,int list l)->if l==[int] then acc else aux(<:l:acc,:>l);
+    int list reverse(int list l)->aux([int],l)
+in
+    reverse(1:2:3:4:[int])==4:3:2:1:[int]

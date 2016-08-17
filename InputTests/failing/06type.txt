@@ -1,0 +1,2 @@
+// expected error: TypecheckerException: Found type bool, expected int
+fun int f(bool x)->x in 42

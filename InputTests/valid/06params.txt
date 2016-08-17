@@ -1,0 +1,6 @@
+// expected output: true
+fun
+int foo(int x) -> x
+string foo(int x,string x) -> x
+in
+foo(42,"42")=="42"

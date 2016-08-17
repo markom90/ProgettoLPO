@@ -1,0 +1,2 @@
+// expected error: TypecheckerException: Number of arguments does not match
+fun int f(int x,int y)->y in f(3,4,5)

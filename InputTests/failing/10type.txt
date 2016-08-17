@@ -1,0 +1,2 @@
+// expected error: TypecheckerException: Found type bool list list, expected int list list
+[int list]==[bool list]

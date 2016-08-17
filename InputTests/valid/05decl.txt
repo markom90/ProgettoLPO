@@ -1,0 +1,7 @@
+// expected output: true
+fun
+int foo(int foo)->if foo<=0 then 0 else foo+foo(foo-1);
+in
+let foo=2 in foo(foo*foo);==10 &
+let foo=2 in let foo=foo:[int] in <:foo;+foo;==4 &
+let foo=2 in foo;:let foo=[int] in foo;==2:[int]

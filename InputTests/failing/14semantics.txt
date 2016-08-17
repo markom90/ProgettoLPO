@@ -1,0 +1,2 @@
+// expected error: StackOverflowError
+fun int omega()->omega() in omega()

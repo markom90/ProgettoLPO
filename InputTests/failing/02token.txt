@@ -1,0 +1,2 @@
+// expected error: TokenizerException: Unknown token "\\
+"\\b\b"
