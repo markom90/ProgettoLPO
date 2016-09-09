@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created by marco on 07/03/16.
- */
+
 public class FunDecList implements FunDecs {
 
     private List<FunDec> funDecs;

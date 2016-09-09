@@ -1,12 +1,9 @@
 package visitor;
 
 import parser.ast.*;
-
 import java.util.List;
 
-/**
- * Created by marco on 04/08/16.
- */
+
 public interface Visitor<T> {
     T visitAdd(Exp left, Exp right);
 

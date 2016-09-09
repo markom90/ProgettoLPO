@@ -4,9 +4,6 @@ import visitor.Visitor;
 
 import static java.util.Objects.requireNonNull;
 
-/**
- * Created by marco on 08/03/16.
- */
 public class SimpleFunDec implements FunDec {
     private Type type;
     private Ident ident;
@@ -27,13 +24,12 @@ public class SimpleFunDec implements FunDec {
 
     @Override
     public String toString() {
-        return new StringBuilder()
-                .append(getClass().getSimpleName())
-                .append("(").append(type.toString())
-                .append(",").append(ident.toString())
-                .append(",").append(params.toString())
-                .append(",").append(exp.toString())
-                .append(")").toString();
+        return getClass().getSimpleName() +
+                "(" + type.toString() +
+                "," + ident.toString() +
+                "," + params.toString() +
+                "," + exp.toString() +
+                ")";
     }
 
 

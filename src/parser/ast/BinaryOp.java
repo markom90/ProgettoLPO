@@ -2,9 +2,6 @@ package parser.ast;
 
 import static java.util.Objects.requireNonNull;
 
-/**
- * Created by marco on 08/03/16.
- */
 public abstract class BinaryOp implements Exp {
     Exp left;
     Exp right;

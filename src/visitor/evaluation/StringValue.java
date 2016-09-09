@@ -8,11 +8,7 @@ public class StringValue extends PrimValue<String> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof StringValue))
-			return false;
-		return value.equals(((StringValue) obj).value);
+		return this == obj || obj instanceof StringValue && value.equals(((StringValue) obj).value);
 	}
 
 	@Override

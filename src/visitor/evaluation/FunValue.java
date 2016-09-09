@@ -5,9 +5,6 @@ import parser.ast.Ident;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by marco on 16/08/16.
- */
 public class FunValue {
     private FunClos funClos;
     private Map<Ident, FunValue> env;

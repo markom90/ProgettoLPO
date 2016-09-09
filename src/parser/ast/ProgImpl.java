@@ -4,9 +4,6 @@ import visitor.Visitor;
 
 import static java.util.Objects.requireNonNull;
 
-/**
- * Created by marco on 10/03/16.
- */
 public class ProgImpl implements Prog {
     private FunDecs fundecs;
     private Exp exp;

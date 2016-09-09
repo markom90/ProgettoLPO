@@ -8,7 +8,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ReaderMatcher implements StreamMatcher {
+class ReaderMatcher implements StreamMatcher {
 	private static final MatchResult noresult = Pattern.compile("").matcher("").toMatchResult();
 	private final Matcher matcher;
 	private final BufferedReader buffReader;
@@ -27,7 +27,7 @@ public class ReaderMatcher implements StreamMatcher {
 		}
 	}
 
-	public ReaderMatcher(String regex, Reader reader) {
+	ReaderMatcher(String regex, Reader reader) {
 		matcher = Pattern.compile(regex).matcher("");
 		buffReader = new BufferedReader(reader);
 	}

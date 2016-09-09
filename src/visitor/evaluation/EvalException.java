@@ -1,9 +1,7 @@
 package visitor.evaluation;
 
-/**
- * Created by marco on 16/08/16.
- */
-public class EvalException extends RuntimeException {
+
+class EvalException extends RuntimeException {
 
     public EvalException() {
     }

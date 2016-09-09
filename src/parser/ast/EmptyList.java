@@ -4,9 +4,7 @@ import visitor.Visitor;
 
 import static java.util.Objects.requireNonNull;
 
-/**
- * Created by marco on 06/08/16.
- */
+
 public class EmptyList implements Exp {
     private final Type type;
 

@@ -174,7 +174,6 @@ public class TypecheckVisitor implements Visitor<Type> {
 		return STRING;
 	}
 
-    //TODO
     @Override
 	public Type visitType(PrimType primType) {
 		throw new NotImplementedException();
@@ -214,7 +213,6 @@ public class TypecheckVisitor implements Visitor<Type> {
         return INT;
     }
 
-    //TODO
 	@Override
 	public Type visitListType(Type type) {
         throw new NotImplementedException();
@@ -294,13 +292,13 @@ public class TypecheckVisitor implements Visitor<Type> {
             throw new TypecheckerException("Number of arguments does not match");
         return funType.getRetType();
     }
-//TODO
+
     @Override
     public Type visitArgList(List<Exp> args) {
         throw new NotImplementedException();
 
     }
-//TODO
+
     @Override
     public Type visitParam(Type type, Ident ident) {
         throw new NotImplementedException();

@@ -4,9 +4,6 @@ import visitor.Visitor;
 
 import static java.util.Objects.requireNonNull;
 
-/**
- * Created by marco on 11/03/16.
- */
 public class SimpleIdent implements Ident {
     private final String name;
 
@@ -34,9 +31,7 @@ public class SimpleIdent implements Ident {
     public final boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!(obj instanceof SimpleIdent))
-            return false;
-        return name.equals(((SimpleIdent) obj).getName());
+        return obj instanceof SimpleIdent && name.equals(((SimpleIdent) obj).getName());
     }
     @Override
     public int hashCode() {

@@ -2,11 +2,8 @@ package parser.ast;
 
 import visitor.Visitor;
 
-/**
- * Created by marco on 10/03/16.
- */
 public class IfExp implements Exp {
-    Exp ifExp,thenExp,elseExp;
+    private Exp ifExp,thenExp,elseExp;
     public IfExp(Exp ifExp,Exp thenExp, Exp elseExp){
         this.ifExp=ifExp;
         this.thenExp=thenExp;

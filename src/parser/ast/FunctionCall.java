@@ -4,12 +4,9 @@ import visitor.Visitor;
 
 import static java.util.Objects.requireNonNull;
 
-/**
- * Created by marco on 06/08/16.
- */
 public class FunctionCall implements Exp {
-    SimpleIdent name;
-    Args args;
+    private SimpleIdent name;
+    private Args args;
 
     public FunctionCall(SimpleIdent name, Args args) {
         this.name = requireNonNull(name);

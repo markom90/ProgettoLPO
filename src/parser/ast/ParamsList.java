@@ -1,13 +1,9 @@
 package parser.ast;
 
 import visitor.Visitor;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by marco on 11/03/16.
- */
 public class ParamsList implements Params {
 
     private List<Param> params;

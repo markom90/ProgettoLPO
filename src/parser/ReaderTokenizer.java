@@ -106,7 +106,7 @@ public class ReaderTokenizer implements StreamTokenizer {
 			tokenString = "";
 			if (sm.nextMatches())
 				getType();
-			else if (!sm.hasNext())
+			else if (!hasNext())
 				return tokenType = EOF;
 			else
 				throw new TokenizerException("Unknown token " + sm.getSkipped());

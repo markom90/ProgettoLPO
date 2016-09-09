@@ -1,7 +1,4 @@
 package interpreter;
-
-
-
 import parser.Parser;
 import parser.ParserClass;
 import parser.ParserException;

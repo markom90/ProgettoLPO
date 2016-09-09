@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created by marco on 10/03/16.
- */
 public class DecList implements Decs {
 
     private List<Dec> decs;

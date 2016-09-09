@@ -3,11 +3,8 @@ package visitor.evaluation;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by marco on 16/08/16.
- */
 public class ListValue implements Value {
-    List<Value> values;
+    private List<Value> values;
 
     public ListValue(List<Value> values) {
         this.values = values;
@@ -29,11 +26,7 @@ public class ListValue implements Value {
 
     @Override
     public final boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!(obj instanceof ListValue))
-            return false;
-        return values.equals(((ListValue)obj).values);
+        return this == obj || obj instanceof ListValue && values.equals(((ListValue) obj).values);
     }
 
     @Override

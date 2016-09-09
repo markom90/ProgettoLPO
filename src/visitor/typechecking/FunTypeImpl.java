@@ -7,9 +7,7 @@ import visitor.Visitor;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by marco on 08/08/16.
- */
+
 public class FunTypeImpl implements FunType {
     protected final List<Type> paramsType;
     protected final Type returnType;

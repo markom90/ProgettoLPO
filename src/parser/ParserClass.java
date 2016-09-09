@@ -6,38 +6,19 @@ import java.io.IOException;
 
 import static parser.TokenType.*;
 
-
-/*
-        Main ::= Prog $
-        Prog ::= (fun (FunDec) + in)? Exp
-        FunDec ::= Type Ident ( Params ) -> Exp
-        Params ::= (Type Ident (, Type Ident) ∗ )?
-        Exp ::= Exp \| And | And
-        And ::= And & Eq | Eq
-        Eq ::= Eq EqOp Rel | Rel
-        EqOp ::= == | /=
-        Rel ::= Rel RelOp Concat | Concat
-        RelOp ::= < | <= | > | >=
-        Concat ::= Add : Concat | Add
-        Add ::= Add AddOp Mul | Mul
-        AddOp ::= + | - | ^
-        Mul ::= Mul MulOp Atom | Atom
-        MulOp ::=  * | / | %
-        Atom ::= UnaryOp Atom | BoolLit | IntLit | StringLit | Ident | ( Exp )
-                | Ident ( Args ) | [ Type ] | if Exp then Exp else Exp ; | let (Dec) + in Exp ;
-        UnaryOp ::= ~ | - | # | <: | :>
-        Dec ::= Ident = Exp
-        Args ::= (Exp (, Exp) ∗ )?
-        Type ::= int | bool | string | Type list
-*/
-
+/**
+ * Parser per il linguaggio del progetto
+ */
 public class ParserClass implements Parser {
-
+    /**
+     * Tokenizzatore utilizzato per analizzare l'input
+     */
 	private final StreamTokenizer tok;
 
 	public ParserClass(StreamTokenizer tokenizer) {
 		tok = tokenizer;
 	}
+
 
     @Override
     public AST parseMain() throws IOException, ParserException {
@@ -46,7 +27,16 @@ public class ParserClass implements Parser {
         return result;
     }
 
-	public Prog parseProg() throws IOException, ParserException {
+    /**
+     * Effettua il parsing di un non terminale <code>Prog</code>, che rappresenta un programma
+     * @return un programma
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
+	private Prog parseProg() throws IOException, ParserException {
 		tok.next();
         Prog result;
         if (tok.tokenType()==FUN){
@@ -59,17 +49,32 @@ public class ParserClass implements Parser {
         return result;
     }
 
+    /**
+     * Effettua il parsing di un non terminale <code>FunDecs</code>,che rappresenta una sequenza di dichiarazioni di funzione
+     * @return lista di dichiarazioni di funzione
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
 	private FunDecs parseFunDecs() throws ParserException, IOException {
         FunDecs funDecs = new FunDecList();
         funDecs.add(parseFunDec());
         while (isTypeDec(tok.tokenType()))
             funDecs.add(parseFunDec());
         return funDecs;
+    }
 
-
-	}
-
-
+    /**
+     * Effettua il parsing di un non terminale <code>FunDec</code>,che rappresenta una dichiarazione di funzione
+     * @return dichiarazione di funzione
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
     private FunDec parseFunDec() throws ParserException, IOException {
         Type type = parseType();
         Ident ident = parseIdent();
@@ -81,6 +86,15 @@ public class ParserClass implements Parser {
         return new SimpleFunDec(type,ident,params,exp);
     }
 
+    /**
+     * Effettua il parsing di un non terminale <code>Params</code>,che rappresenta una sequenza parametri di funzione
+     * @return lista di parametri di funzione
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
     private Params parseParams() throws ParserException, IOException {
         ParamsList params = new ParamsList();
         if(isTypeDec(tok.tokenType())) {
@@ -96,7 +110,15 @@ public class ParserClass implements Parser {
         }
         return params;
     }
-
+    /**
+     * Effettua il parsing di un non terminale <code>Type</code>,che rappresenta i tipi di dato primitivo del linguaggio
+     * @return il tipo di dato del token
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
     private Type parseType() throws IOException, ParserException {
         Type result = null;
         switch (tok.tokenType()){
@@ -115,7 +137,15 @@ public class ParserClass implements Parser {
         }
         return result;
     }
-
+    /**
+     * Effettua il parsing di un non terminale <code>Exp</code>,che rappresenta l'operazione logica <tt>OR</tt>
+     * @return un'espressione
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
     private Exp parseExp() throws ParserException, IOException {
 		Exp result = parseAnd();
         while (tok.tokenType()==PIPE){
@@ -124,7 +154,15 @@ public class ParserClass implements Parser {
         }
         return result;
 	}
-
+    /**
+     * Effettua il parsing di un non terminale <code>And</code>,che rappresenta l'operazione logica <tt>AND</tt>
+     * @return un'espressione
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
     private Exp parseAnd() throws IOException, ParserException {
         Exp result = parseEq();
         while (tok.tokenType()==AMPERSAND){
@@ -134,7 +172,15 @@ public class ParserClass implements Parser {
         return result;
 
     }
-
+    /**
+     * Effettua il parsing di un non terminale <code>Eq</code>,che rappresenta l'operazione di uguaglianza
+     * @return un'espressione
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
     private Exp parseEq() throws IOException, ParserException {
         Exp result = parseRel();
         TokenType opType;
@@ -144,10 +190,15 @@ public class ParserClass implements Parser {
         }
         return result;
     }
-
-
-
-
+    /**
+     * Effettua il parsing di un non terminale <code>Args</code>,che rappresenta una sequenza di argomenti di funzione
+     * @return una lista di argomenti di funzione
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
     private Args parseArgs() throws IOException, ParserException {
         Args args = new ArgsList();
         if(tok.tokenType()==CLOSEDPAR){
@@ -162,16 +213,30 @@ public class ParserClass implements Parser {
         consume(CLOSEDPAR);
         return args;
     }
-
+    /**
+     * Effettua il parsing di un elemento lessicale <code>BoolLit</code>,che rappresenta un literal booleano
+     * @return un literal booleano
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
     private Exp parseBoolLit() throws IOException, TokenizerException {
-        Exp result = new BoolLit(tok.tokenType()==TRUE?true:false);
+        Exp result = new BoolLit(tok.tokenType() == TRUE);
         tok.next();
         return result;
     }
-
-
-
-	private Exp parseRel() throws ParserException, IOException {
+    /**
+     * Effettua il parsing di un non terminale <code>Args</code>,che rappresenta una sequenza di argomenti di funzione
+     * @return una lista di argomenti di funzione
+     * @throws IOException
+     *         se si verifica un errore di I/O
+     * @throws ParserException
+     *         se trova un token inaspettato
+     *
+     */
+    private Exp parseRel() throws ParserException, IOException {
 		Exp result = parseListConcat();
 		TokenType opType;
 		while (isRelOp(opType = tok.tokenType())) {
@@ -299,15 +364,12 @@ public class ParserClass implements Parser {
 	private Dec parseDec() throws ParserException, IOException {
 		SimpleIdent id = parseIdent();
 		consume(ASSIGN);
-		Dec dec = new SimpleDec(id, parseExp());
-		return dec;
+        return new SimpleDec(id, parseExp());
 	}
 
 	private IntLiteral parseNum() throws TokenizerException, IOException {
-
-		IntLiteral result = new IntLiteral(tok.intValue());
+        IntLiteral result = new IntLiteral(tok.intValue());
         tok.next();
-
         return result;
 	}
 
@@ -385,7 +447,6 @@ public class ParserClass implements Parser {
                 return new Neq(left,right);
         }
     }
-
 
     private static Exp buildMulOp(TokenType opType, Exp left, Exp right) {
         switch (opType) {

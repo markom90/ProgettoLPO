@@ -4,9 +4,6 @@ import visitor.Visitor;
 
 import static java.util.Objects.requireNonNull;
 
-/**
- * Created by marco on 08/03/16.
- */
 public class SimpleDec implements Dec {
     private Ident ident;
     private Exp exp;

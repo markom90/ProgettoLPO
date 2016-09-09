@@ -7,8 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static sun.reflect.Reflection.getCallerClass;
-
 public class EnvironmentClass<T> implements Environment<T> {
 
 	private List<Map<Ident, T>> localEnvs = new LinkedList<>();

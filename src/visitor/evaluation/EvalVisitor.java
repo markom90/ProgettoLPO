@@ -3,6 +3,7 @@ package visitor.evaluation;
 import environments.Environment;
 import environments.EnvironmentClass;
 import parser.ast.*;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import visitor.Visitor;
 
 import java.util.*;
@@ -111,8 +112,8 @@ public class EvalVisitor implements Visitor<Value> {
 	@Override
 	public Value visitAnd(Exp left, Exp right) {
         boolean leftValue = left.accept(this).asBool();
-        if(!leftValue) return new BoolValue(leftValue);
-        else return new BoolValue(leftValue && right.accept(this).asBool());	}
+        if(!leftValue) return new BoolValue(false);
+        else return new BoolValue(right.accept(this).asBool());	}
 
 	@Override
 	public Value visitBoolLit(Boolean value) {
@@ -141,11 +142,10 @@ public class EvalVisitor implements Visitor<Value> {
 	public Value visitListLength(Exp exp) {
         return new IntValue(exp.accept(this).asList().size());
     }
-//TODO
 
 	@Override
 	public Value visitListType(Type type) {
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
@@ -165,14 +165,13 @@ public class EvalVisitor implements Visitor<Value> {
 	@Override
 	public Value visitOr(Exp left, Exp right) {
         boolean leftValue = left.accept(this).asBool();
-        if(leftValue) return new BoolValue(leftValue);
-        else return new BoolValue(leftValue || right.accept(this).asBool());
+        if(leftValue) return new BoolValue(true);
+        else return new BoolValue(right.accept(this).asBool());
 	}
-//TODO
 
 	@Override
 	public Value visitParamList(List<Param> params) {
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
@@ -193,15 +192,12 @@ public class EvalVisitor implements Visitor<Value> {
         return null;
     }
 
-
 	@Override
 	public Value visitListConcat(Exp left, Exp right) {
 		List<Value> list = left.accept(this).asList();
-        Iterator<Value> iterator = right.accept(this).asList().iterator();
-        while(iterator.hasNext()) list.add(iterator.next());
+		for (Value value : right.accept(this).asList()) list.add(value);
         return new ListValue(list);
     }
-
 
 	@Override
 	public Value visitFunDecList(List<FunDec> funDecs) {
@@ -209,7 +205,6 @@ public class EvalVisitor implements Visitor<Value> {
             funDec.accept(this);
         return null;
     }
-
 
 	@Override
 	public Value visitExtractHead(Exp exp) {
@@ -219,7 +214,6 @@ public class EvalVisitor implements Visitor<Value> {
 		}
         throw new EvalException("Undefined operation on empty list: ExtractHead");
 	}
-
 
 	@Override
 	public Value visitExtractTail(Exp exp) {
@@ -248,17 +242,15 @@ public class EvalVisitor implements Visitor<Value> {
         DFEnv = aux;
         return result;
     }
-//TODO
 
 	@Override
 	public Value visitArgList(List<Exp> args) {
-		return null;
+		throw new NotImplementedException();
 	}
-//TODO
 
 	@Override
 	public Value visitParam(Type type, Ident ident) {
-		return null;
+		throw new NotImplementedException();
 	}
 
 }

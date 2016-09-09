@@ -1,18 +1,14 @@
 package visitor.evaluation;
 
-public class BoolValue extends PrimValue<Boolean> {
+class BoolValue extends PrimValue<Boolean> {
 
-	public BoolValue(Boolean value) {
+	BoolValue(Boolean value) {
 		super(value);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof BoolValue))
-			return false;
-		return value.equals(((BoolValue) obj).value);
+		return this == obj || obj instanceof BoolValue && value.equals(((BoolValue) obj).value);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package visitor.evaluation;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public interface Value extends Comparable<Value> {

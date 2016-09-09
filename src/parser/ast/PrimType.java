@@ -2,9 +2,6 @@ package parser.ast;
 
 import visitor.Visitor;
 
-/**
- * Created by marco on 08/03/16.
- */
 public enum PrimType implements Type {
     INT,BOOL,STRING;
 

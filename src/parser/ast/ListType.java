@@ -4,9 +4,6 @@ import visitor.Visitor;
 
 import static java.util.Objects.requireNonNull;
 
-/**
- * Created by marco on 05/08/16.
- */
 public class ListType implements Type {
     private Type type;
 
@@ -32,8 +29,6 @@ public class ListType implements Type {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!(obj instanceof ListType))
-            return false;
-        return type.equals(((ListType) obj).getType());
+        return obj instanceof ListType && type.equals(((ListType) obj).getType());
     }
 }
